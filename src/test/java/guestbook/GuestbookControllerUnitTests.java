@@ -38,13 +38,13 @@ class GuestbookControllerUnitTests {
 	@Test
 	void populatesModelForGuestbook() {
 
-		var entry = new GuestbookEntry("Yoda", "May the 4th b with you!");
+		var entry = new GuestbookEntry("Yoda", "May the 4th b with you!", "yoda@yodamail.at");
 		doReturn(Streamable.of(entry)).when(guestbook).findAll();
 
 		var model = new ExtendedModelMap();
 
 		var controller = new GuestbookController(guestbook);
-		var viewName = controller.guestBook(model, new GuestbookForm(null, null));
+		var viewName = controller.guestBook(model, new GuestbookForm(null, null,null));
 
 		assertThat(viewName).isEqualTo("guestbook");
 		assertThat(model.asMap().get("entries")).isInstanceOf(Iterable.class);

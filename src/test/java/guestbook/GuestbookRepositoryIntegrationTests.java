@@ -42,7 +42,7 @@ class GuestbookRepositoryIntegrationTests {
 	@Test
 	void persistsGuestbookEntry() {
 
-		var entry = repository.save(new GuestbookEntry("Yoda", "May the force be with you!"));
+		var entry = repository.save(new GuestbookEntry("Yoda", "May the force be with you!", "yoda@yodamail.gr"));
 
 		assertThat(repository.findAll()).contains(entry);
 	}
@@ -50,7 +50,7 @@ class GuestbookRepositoryIntegrationTests {
 	@Test // #34
 	void findsGuestbookEntryByAuthorName() {
 
-		var entry = repository.save(new GuestbookEntry("Yoda", "May the force be with you!"));
+		var entry = repository.save(new GuestbookEntry("Yoda", "May the force be with you!", "yoda@yodamail.gr"));
 
 		assertThat(repository.findByName("Yoda", Sort.by("date"))).contains(entry);
 	}
